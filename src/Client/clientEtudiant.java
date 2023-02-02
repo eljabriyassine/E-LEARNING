@@ -27,6 +27,8 @@ public class clientEtudiant {
         IAdminRemote iAdminRemote = (IAdminRemote) Naming.lookup(url);
         url ="rmi://localhost/serverTableEtudiant";
         ITableEtudiantRemote iTableEtudiantRemote = (ITableEtudiantRemote) Naming.lookup(url);
+        url ="rmi://localhost/serverTableEtudiant";
+        IProfRemote iProfRemote = (IProfRemote) Naming.lookup("serverProf");
 
         Etudiant etudiant;
         String username,password;
@@ -74,7 +76,8 @@ public class clientEtudiant {
                             System.out.println("description : "  + c.getDescription());
                         }
                     }else{
-                        System.out.println("inscrit in classe");
+                        System.out.println("enter the name of classe");
+
                     }
                     break;
                 case "2":

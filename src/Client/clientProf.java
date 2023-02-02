@@ -5,7 +5,6 @@ import Etudiant.Etudiant;
 import Prof.Prof;
 import Prof.Service.IProfRemote;
 import Prof.Service.ITableRemote;
-import Prof.Service.ITableRemoteImp;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -75,11 +74,9 @@ public class clientProf {
                     List<Etudiant> etudiants = iProfRemote.getAllEtudiantInClasse(name_classe,id_prof);
                    if(etudiants!=null){
                        System.out.println("list of etudiant");
-                       System.out.println("-----------------------------");
                        for(Etudiant e : etudiants){
                            System.out.println("nom eutidant : " + e.getUsername());
                        }
-                       System.out.println("-----------------------------");
                    }else{
                        System.out.println("we can't find this class ...");
                    }
@@ -92,8 +89,6 @@ public class clientProf {
                         String name_etudiant = scanner.nextLine();
                         int id_classe =iProfRemote.getIdClasseByName(name_classe,id_prof);
                         int id_etudiant = iProfRemote.getIdEtudiantByName(name_etudiant);
-                        System.out.println("id_classe : " + id_classe);
-                        System.out.println("id_etudiant : " + id_etudiant);
                         if(id_classe== -1 ){
                             System.out.println("the classe doesn't exist");
                         } else if ( id_etudiant== -1) {
@@ -107,14 +102,14 @@ public class clientProf {
                     break;
                 case "4":
                    while (true){
-                       System.out.println("choose classe");
+                       System.out.print("choose classe : ");
                        name_classe = scanner.nextLine();
                        int id_classe = iProfRemote.getIdClasseByName(name_classe,id_prof);
                        if( id_classe!= -1){
-                           System.out.print("enter the messagee ");
+                           System.out.print("enter the messagee  : ");
                            String message = scanner.nextLine();
                            if(!message.equals("")){
-                               System.out.print("message added succefully !!!");
+                               System.out.println("message added succefully !!!");
                             iProfRemote.SharMessageInClasse(id_classe,message);
                             break;
                            }else{
