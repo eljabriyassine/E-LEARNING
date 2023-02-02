@@ -204,7 +204,7 @@ public class DataBase implements Serializable {
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                Classe classe = new Classe(resultSet.getInt("id_classe"),resultSet.getInt("id_responsable "),resultSet.getString("name"),resultSet.getString("description"));
+                Classe classe = new Classe(resultSet.getInt("id_classe"),resultSet.getInt("id_responsable"),resultSet.getString("name"),resultSet.getString("description"));
                 listClasse.add(classe);
             }
         } catch (SQLException e) {
@@ -266,7 +266,7 @@ public class DataBase implements Serializable {
     }
 
 
-    public boolean addEtudiantInClasse(int id_classe,int id_etudiant){
+    public boolean addEtudiantInClasse(int id_classe, int id_etudiant){
         try {
             connection = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             String sql = "INSERT INTO liste_etudiant (id_classe ,id_etudiant) VALUES (?,?)";
@@ -362,18 +362,14 @@ public class DataBase implements Serializable {
 
     public static void main(String[] args) throws MalformedURLException, NotBoundException, RemoteException {
         DataBase dataBase = new DataBase();
-//        int id  = dataBase.getIdProfByName("yassine");
-        List<Message> messageList = new ArrayList<>();
-        messageList = dataBase.getMessageinsideClasse("javam");
-
-        if(messageList!= null){
-            for (Message c : messageList){
-                System.out.println(c.getMessage());
-                System.out.println(c.getDate());
-            }
-        }else {
-            System.out.println("something wrong...");
+//      List<Classe>classes = dataBase.getAllClasseOfProf(13);
+//        System.out.println(classes.size());
+//        dataBase.addEtudiantInClasse(9,17);
+//        System.out.println(dataBase.getIdClasseByName("classe_1"));
+        List<Classe> classes = dataBase.getAllClasseOfProf(13);
+        for (Classe c : classes){
+            if(c.getName().equals("c1"))
+                System.out.println(dataBase.getIdClasseByName("c1"));
         }
-//        dataBase.SharMessageInClasse(1,"this is course of java");
     }
 }

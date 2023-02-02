@@ -88,7 +88,7 @@ public class IDataBaseRemoteImp extends UnicastRemoteObject implements IDataBase
     }
 
     @Override
-    public boolean addEtudiantInClasse(int id_classe, int id_etudiant) throws RemoteException {
+    public boolean addEtudiantInClasse(int id_classe, int id_etudiant ) throws RemoteException {
         return db.addEtudiantInClasse(id_classe,id_etudiant);
     }
     public boolean  SharMessageInClasse (int id_classe , String message) throws RemoteException{

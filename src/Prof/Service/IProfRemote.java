@@ -17,7 +17,7 @@ public interface IProfRemote extends Remote {
     public int  getIdClasseByName(String name_classe,int id_prof)throws RemoteException ;
 //
     public int  getIdEtudiantByName(String username) throws RemoteException;
-    public boolean addEtudiantInClasse(String name_classe,String name_etudiant) throws RemoteException;
+    public boolean addEtudiantInClasse(int id_classe,int id_etudiant) throws RemoteException;
 
     public boolean  SharMessageInClasse (int id_classe , String Message) throws RemoteException;
 

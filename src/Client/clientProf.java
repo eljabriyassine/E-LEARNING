@@ -46,7 +46,7 @@ public class clientProf {
 
         do {
             int id_prof = iProfRemote.getIdProfByName(prof.getUsername());//for select the classe of specific prof
-            System.out.println("::::::::::::::: table borad ::::::::::::::::::::");
+            System.out.println("::::::::::::::: table bord ::::::::::::::::::::");
             System.out.println("1 - Liste Classe");
             System.out.println("2 - Liste Etudinat in classe");
             System.out.println("3 - add etudiant in classe");
@@ -57,7 +57,6 @@ public class clientProf {
             switch (choice){
                 case "1":
                     List<Classe> classes= iProfRemote.getAllClasseOfProf(id_prof);
-                    System.out.println(classes.size());
                     int i=1;
                     if(classes.size()!=0){
                         for (Classe c : classes){
@@ -74,8 +73,8 @@ public class clientProf {
                     String name_classe =scanner.nextLine();
                     //select the claase where prof id responsable
                     List<Etudiant> etudiants = iProfRemote.getAllEtudiantInClasse(name_classe,id_prof);
-                   if(etudiants != null){
-                       System.out.print("list of etudiant");
+                   if(etudiants!=null){
+                       System.out.println("list of etudiant");
                        System.out.println("-----------------------------");
                        for(Etudiant e : etudiants){
                            System.out.println("nom eutidant : " + e.getUsername());
@@ -91,14 +90,17 @@ public class clientProf {
                         name_classe = scanner.nextLine();
                         System.out.print("enter the name of etudiant : ");
                         String name_etudiant = scanner.nextLine();
-                        if(iProfRemote.getIdClasseByName(name_classe,id_prof) == -1 ){
-
+                        int id_classe =iProfRemote.getIdClasseByName(name_classe,id_prof);
+                        int id_etudiant = iProfRemote.getIdEtudiantByName(name_etudiant);
+                        System.out.println("id_classe : " + id_classe);
+                        System.out.println("id_etudiant : " + id_etudiant);
+                        if(id_classe== -1 ){
                             System.out.println("the classe doesn't exist");
-                        } else if (iProfRemote.getIdEtudiantByName(name_etudiant) == -1) {
+                        } else if ( id_etudiant== -1) {
                             System.out.println("enter valid name of etudiant");
                         }else{
                             System.out.println(name_etudiant + " added succefully in classe : " + name_classe);
-                            iProfRemote.addEtudiantInClasse(name_etudiant,name_classe);
+                            iProfRemote.addEtudiantInClasse(id_classe,id_etudiant);
                             break;
                         }
                     }

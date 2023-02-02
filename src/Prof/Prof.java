@@ -69,9 +69,11 @@ public class Prof implements Serializable {
         return iDataBaseRemote.getIdProfByName(name);
     }
     public List<Classe> getAllClasseOfProf (int id_prof) throws RemoteException{
+        System.out.println(id_prof);
         return iDataBaseRemote.getAllClasseOfProf(id_prof);
     }
     public List<Etudiant> getAllEtudiantInClasse(String name_classe,int  id_prof) throws RemoteException{
+        System.out.println(id_prof);
         List<Classe> classes = getAllClasseOfProf(id_prof);
         for (Classe c : classes){
             if(c.getName().equals(name_classe))
@@ -93,28 +95,28 @@ public class Prof implements Serializable {
         return iDataBaseRemote.getIdEtudiantByName(username);
     }
 
-    public boolean addEtudiantInClasse(String name_classe,String name_etudiant) throws RemoteException{
-            if(name_classe.equals("") || name_etudiant.equals("")){
-                System.out.println("all information are required");
-            }else{
-                int id_classe = getIdClasseByName(name_classe,id_prof);
-                int id_etudiant = getIdEtudiantByName(name_etudiant);
-                System.out.println("id_classe : " + id_classe);
-                System.out.println("id_etudiant : " + id_etudiant);
-                if(id_classe == -1){
-                    System.out.println("the name of the classe wrong ...");
-                }else if(id_etudiant == -1){
-                    System.out.println("the name of the etudiant wrong ...");
+    public boolean addEtudiantInClasse(int id_classe,int id_etudiant) throws RemoteException{
+                System.out.println("----------------");
+                System.out.println(id_prof);
+                System.out.println("--------------------");
+                System.out.println(id_classe);
+                System.out.println(id_etudiant);
+                System.out.println(id_prof);
+                System.out.println("------------------------");
+                if(id_classe == -1  || id_etudiant == -1) {
+                    return false;
                 }else{
-                    System.out.println(name_etudiant + " added succefully in classe : " + name_classe );
                     return iDataBaseRemote.addEtudiantInClasse(id_classe,id_etudiant);
                 }
-            }
-        return false;
     }
 
     public boolean  ShareMessageInClasse (int id_classe , String Message) throws RemoteException {
         return iDataBaseRemote.SharMessageInClasse(id_classe,Message);
+    }
+
+    public static void main(String[] args) throws MalformedURLException, NotBoundException, RemoteException {
+        Prof prof = new Prof();
+        System.out.println(prof.addEtudiantInClasse(11,19));
     }
 
 

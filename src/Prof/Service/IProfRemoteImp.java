@@ -46,12 +46,16 @@ public class IProfRemoteImp extends UnicastRemoteObject implements IProfRemote {
     }
 
     @Override
-    public boolean addEtudiantInClasse(String name_classe, String name_etudiant) throws RemoteException {
-        return prof.addEtudiantInClasse(name_classe,name_etudiant);
+    public boolean addEtudiantInClasse(int id_classe,int id_etudiant) throws RemoteException {
+        return prof.addEtudiantInClasse(id_classe,id_etudiant);
     }
 
     public boolean  SharMessageInClasse (int id_classe , String Message) throws RemoteException{
         return prof.ShareMessageInClasse(id_classe,Message);
+    }
+
+    public static void main(String[] args) throws MalformedURLException, NotBoundException, RemoteException {
+        IProfRemoteImp iProfRemoteImp = new IProfRemoteImp();
     }
 
 }

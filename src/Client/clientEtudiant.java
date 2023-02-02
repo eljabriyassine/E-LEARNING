@@ -92,7 +92,7 @@ public class clientEtudiant {
                         System.out.println("somethign wrong ...");
                     }
                 case "4":
-
+                        iTableEtudiantRemote.Frame();
                 default:
 
                     break;

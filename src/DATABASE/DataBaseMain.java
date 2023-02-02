@@ -14,5 +14,6 @@ public class DataBaseMain {
         Naming.rebind("serverDatabase",serverDatabase);
         System.out.println("the server of databse is up ...");
 
+
     }
 }
